@@ -52,21 +52,88 @@ a:hover { text-decoration: underline; }
 .hero {
   background: var(--paper);
   border-bottom: 1px solid var(--line);
-  padding: 58px 0 48px;
+  padding: 48px 0 42px;
 }
-.hero-grid {
+.about-layout {
   display: grid;
-  grid-template-columns: 210px 1fr;
-  gap: 42px;
-  align-items: center;
+  grid-template-columns: 244px minmax(0, 1fr);
+  gap: 46px;
+  align-items: start;
+}
+.profile-panel {
+  width: 100%;
+  padding: 16px;
+  background: #f8fbff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(18,52,91,.10);
+}
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #eef3f8;
+  border: 1px solid #d5dee8;
 }
 .profile-photo {
-  width: 210px;
-  height: 210px;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  box-shadow: 0 14px 34px rgba(18,52,91,.16);
+  object-position: center top;
+}
+.profile-caption {
+  margin-top: 13px;
+  text-align: center;
+}
+.profile-caption strong {
+  display: block;
+  color: var(--navy);
+  font-size: 1rem;
+}
+.profile-caption span {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.profile-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+.profile-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 7px 8px;
+  border: 1px solid #cdd9e6;
+  border-radius: 8px;
+  background: white;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+}
+.profile-link:hover {
+  text-decoration: none;
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+.about-content {
+  min-width: 0;
+  padding-top: 2px;
+}
+.about-content .summary {
+  max-width: 780px;
+}
+.bio {
+  margin: 14px 0 0;
+  max-width: 790px;
+  color: #435268;
+  font-size: 1.01rem;
 }
 .eyebrow {
   margin: 0 0 8px;
@@ -79,7 +146,7 @@ a:hover { text-decoration: underline; }
 .hero h1 {
   margin: 0;
   color: var(--navy);
-  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  font-size: clamp(2.45rem, 5.5vw, 4rem);
   line-height: 1.04;
   letter-spacing: -.045em;
 }
@@ -210,8 +277,12 @@ footer {
 
 @media (max-width: 760px) {
   .topbar .container { align-items: flex-start; flex-direction: column; padding-top: 13px; padding-bottom: 13px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 25px; }
-  .profile-photo { width: 170px; height: 170px; }
+  .about-layout { grid-template-columns: 1fr; gap: 28px; }
+  .profile-panel { max-width: 260px; justify-self: center; }
+  .about-content { padding-top: 0; }
+  .hero h1, .role, .eyebrow { text-align: center; }
+  .summary, .bio { margin-left: auto; margin-right: auto; }
+  .status-row { justify-content: center; }
   .grid-2, .grid-4 { grid-template-columns: 1fr; }
   section { padding: 22px; }
   .date { display: block; min-width: 0; margin-bottom: 3px; }
@@ -220,7 +291,7 @@ footer {
 
 <div class="topbar">
   <div class="container">
-    <a class="site-name" href="#top">Imran Ahsan</a>
+    <a class="site-name" href="#about">Imran Ahsan</a>
     <nav class="nav" aria-label="Main navigation">
       <a href="#about">About</a>
       <a href="#research">Research</a>
@@ -233,35 +304,42 @@ footer {
   </div>
 </div>
 
-<header class="hero" id="top">
-  <div class="container hero-grid">
-    <img class="profile-photo" src="{{ '/assets/profile.jpg' | relative_url }}" alt="Portrait of Imran Ahsan">
-    <div>
-      <p class="eyebrow">Academic Profile</p>
+<header class="hero" id="about">
+  <div class="container about-layout">
+    <aside class="profile-panel" aria-label="Profile and academic links">
+      <div class="photo-frame">
+        <img class="profile-photo" src="{{ '/assets/profile.jpg' | relative_url }}" alt="Portrait of Imran Ahsan">
+      </div>
+      <div class="profile-caption">
+        <strong>Imran Ahsan</strong>
+        <span>Trustworthy AI &amp; Graph Machine Learning</span>
+        <span>South Korea</span>
+      </div>
+      <div class="profile-links">
+        <a class="profile-link" href="mailto:Imranahsan23@gmail.com">Email</a>
+        <a class="profile-link" href="https://scholar.google.com/citations?user=h_P3dAkAAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar</a>
+        <a class="profile-link" href="https://github.com/ImranAhsan23" target="_blank" rel="noopener">GitHub</a>
+        <a class="profile-link" href="https://www.linkedin.com/in/imran-ahsan-7042365a/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </aside>
+
+    <div class="about-content">
+      <p class="eyebrow">About</p>
       <h1>Imran Ahsan</h1>
       <p class="role">Ph.D. Candidate · Trustworthy AI and Graph Machine Learning</p>
       <p class="summary">I develop reliable learning systems for relational data, with emphasis on machine unlearning, privacy, explainability, auditability, and reproducible evaluation.</p>
+      <p class="bio">I am a Ph.D. candidate in Engineering at Chung-Ang University, advised by Prof. Mucheol Kim. My doctoral research studies how trained graph neural networks can respond to deletion requests efficiently and transparently. The work connects natural-language request interpretation, localized model updating, privacy evaluation, and explanation-based verification.</p>
+      <p class="bio">My earlier training is in software engineering, including natural-language processing for requirements-derived test generation and more than four years of enterprise software development. This background informs my broader interest in AI systems that are dependable, maintainable, and responsive to user and regulatory requirements.</p>
       <div class="status-row">
         <span class="status">Ph.D. defense completed · June 2026</span>
         <span class="status">Chung-Ang University · South Korea</span>
         <span class="status">Open to postdoctoral and faculty opportunities</span>
-      </div>
-      <div class="link-row">
-        <a class="button primary" href="mailto:Imranahsan23@gmail.com">Email</a>
-        <a class="button secondary" href="https://scholar.google.com/citations?user=h_P3dAkAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-        <a class="button secondary" href="https://github.com/ImranAhsan23" target="_blank" rel="noopener">GitHub</a>
-        <a class="button secondary" href="https://www.linkedin.com/in/imran-ahsan-7042365a/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </div>
 </header>
 
 <main class="container">
-  <section id="about">
-    <h2>About</h2>
-    <p class="lead">I am a Ph.D. candidate in Engineering at Chung-Ang University, advised by Prof. Mucheol Kim. My doctoral research studies how trained graph neural networks can respond to deletion requests efficiently and transparently. The work connects natural-language request interpretation, localized model updating, privacy evaluation, and explanation-based verification.</p>
-    <p class="lead">My earlier training is in software engineering, including natural-language processing for requirements-derived test generation and more than four years of enterprise software development. This background informs my broader interest in AI systems that are dependable, maintainable, and responsive to user and regulatory requirements.</p>
-  </section>
 
   <section id="research">
     <h2>Research Interests</h2>
