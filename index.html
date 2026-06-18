@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Imran Ahsan — Trustworthy AI, graph machine learning, machine unlearning, explainable AI, and AI software engineering.">
+  <title>Imran Ahsan | Trustworthy AI & Graph Machine Learning</title>
+  <style>
+    :root {
+      --navy:#12345b;
+      --blue:#1d5f9f;
+      --blue-2:#2e78bb;
+      --soft:#edf5fc;
+      --ink:#1b2735;
+      --muted:#5f6e7e;
+      --line:#dce5ee;
+      --paper:#ffffff;
+      --surface:#f5f8fb;
+      --shadow:0 12px 30px rgba(18,52,91,.09);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--surface);
+      color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.65;
+    }
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .shell{width:min(1080px,calc(100% - 40px));margin:0 auto}
+
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(10px);
+    }
+    .nav-wrap{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-weight:850;color:var(--navy);letter-spacing:-.02em;white-space:nowrap}
+    .nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:18px}
+    .nav a{font-size:14px;font-weight:700;color:#34465a}
+
+    .hero{background:var(--paper);border-bottom:1px solid var(--line);padding:48px 0 44px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:200px minmax(0,1fr);
+      grid-template-areas:
+        "photo intro"
+        "photo actions"
+        "photo bio";
+      column-gap:38px;
+      row-gap:14px;
+      align-items:start;
+    }
+    .portrait-wrap{grid-area:photo;align-self:start}
+    .portrait{
+      width:200px;height:200px;display:block;object-fit:cover;object-position:center top;
+      border-radius:18px;border:1px solid #d2dde8;background:#eef3f8;
+      box-shadow:var(--shadow);
+    }
+    .intro{grid-area:intro;min-width:0;padding-top:3px}
+    .kicker{margin:0 0 7px;color:var(--blue);font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    h1{margin:0;color:var(--navy);font-size:clamp(2.45rem,5vw,4rem);line-height:1.02;letter-spacing:-.045em}
+    .headline{margin:11px 0 0;color:#31465d;font-size:1.2rem;font-weight:720}
+    .summary{margin:12px 0 0;max-width:760px;color:var(--muted);font-size:1.04rem}
+    .actions{grid-area:actions;display:flex;flex-wrap:wrap;gap:9px}
+    .action{
+      display:inline-flex;align-items:center;justify-content:center;min-height:39px;padding:8px 13px;
+      border:1px solid #c7d7e7;border-radius:8px;background:#fff;color:var(--blue);
+      font-size:13px;font-weight:800;
+    }
+    .action.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .action:hover{text-decoration:none;border-color:var(--blue);transform:translateY(-1px)}
+    .bio{grid-area:bio;max-width:800px;color:#42546a}
+    .bio p{margin:0 0 11px}
+    .status-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+    .status{padding:6px 10px;border:1px solid #cfe0f1;border-radius:999px;background:var(--soft);color:var(--navy);font-size:12px;font-weight:750}
+
+    main{padding:8px 0 56px}
+    section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px;margin-top:20px;box-shadow:0 6px 18px rgba(18,52,91,.035)}
+    h2{margin:0 0 18px;color:var(--navy);font-size:1.55rem;letter-spacing:-.02em}
+    h3{margin:0 0 7px;color:#24364a;font-size:1.05rem}
+    p{margin:0 0 13px}
+    .lead{font-size:1.04rem;color:#344457}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+    .card{border:1px solid var(--line);background:#fbfcfe;border-radius:11px;padding:17px}
+    .card p{color:var(--muted);margin:0}
+    .keyword-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .keyword{padding:4px 9px;border-radius:999px;color:var(--blue);background:var(--soft);font-size:12px;font-weight:700}
+    .news-item,.timeline-item,.publication{padding:14px 0;border-bottom:1px solid var(--line)}
+    .news-item:last-child,.timeline-item:last-child,.publication:last-child{border-bottom:0}
+    .date{display:inline-block;min-width:92px;color:var(--blue);font-weight:800}
+    .publication-title{color:#15263a;font-weight:800}
+    .publication-meta{margin-top:4px;color:var(--muted);font-size:14px}
+    .venue{display:inline-block;margin-left:5px;padding:2px 7px;border-radius:999px;background:var(--soft);color:var(--blue);font-size:12px;font-weight:800;white-space:nowrap}
+    .paper-links{margin-top:6px;font-size:13px;font-weight:700}
+    .timeline-title{font-weight:800;color:#182b40}
+    .timeline-meta{color:var(--muted);font-size:14px}
+    .notice{margin-top:18px;border-left:4px solid var(--blue);background:#f5f9fd;border-radius:8px;padding:13px 15px;color:#344457}
+    footer{padding:28px 0 42px;text-align:center;color:var(--muted);font-size:14px}
+
+    @media (max-width:760px){
+      .shell{width:min(100% - 28px,1080px)}
+      .nav-wrap{align-items:flex-start;flex-direction:column;padding:12px 0;gap:10px}
+      .nav{justify-content:flex-start;gap:12px 16px}
+      .hero{padding:30px 0 32px}
+      .hero-grid{
+        grid-template-columns:104px minmax(0,1fr);
+        grid-template-areas:
+          "photo intro"
+          "actions actions"
+          "bio bio";
+        column-gap:18px;row-gap:16px;
+      }
+      .portrait{width:104px;height:104px;border-radius:14px;box-shadow:0 8px 20px rgba(18,52,91,.10)}
+      .intro{padding-top:0}
+      .kicker{font-size:10px;letter-spacing:.07em;margin-bottom:4px}
+      h1{font-size:2.05rem;line-height:1.02}
+      .headline{font-size:.98rem;line-height:1.35;margin-top:7px}
+      .summary{font-size:.91rem;line-height:1.5;margin-top:7px}
+      .actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+      .action{padding:7px 5px;min-height:36px;font-size:11px}
+      .bio{font-size:.96rem}
+      section{padding:22px}
+      .grid-2{grid-template-columns:1fr}
+      .date{display:block;min-width:0;margin-bottom:3px}
+    }
+    @media (max-width:430px){
+      .actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .portrait{width:92px;height:92px}
+      .hero-grid{grid-template-columns:92px minmax(0,1fr);column-gap:14px}
+      h1{font-size:1.8rem}
+      .headline{font-size:.9rem}
+      .summary{display:none}
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="shell nav-wrap">
+      <a class="brand" href="#about">Imran Ahsan</a>
+      <div class="nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="about">
+    <div class="shell hero-grid">
+      <div class="portrait-wrap">
+        <img class="portrait" src="assets/profile.jpg" alt="Portrait of Imran Ahsan">
+      </div>
+      <div class="intro">
+        <p class="kicker">Trustworthy AI · Graph Machine Learning</p>
+        <h1>Imran Ahsan</h1>
+        <p class="headline">Ph.D. Candidate in Trustworthy AI and Graph Machine Learning</p>
+        <p class="summary">I develop reliable learning systems for relational data, with emphasis on machine unlearning, privacy, explainability, auditability, and reproducible evaluation.</p>
+      </div>
+      <div class="actions" aria-label="Academic profile links">
+        <a class="action primary" href="mailto:Imranahsan23@gmail.com">Email</a>
+        <a class="action" href="https://scholar.google.com/citations?user=h_P3dAkAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a class="action" href="https://github.com/ImranAhsan23" target="_blank" rel="noopener">GitHub</a>
+        <a class="action" href="https://www.linkedin.com/in/imran-ahsan-7042365a/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="bio">
+        <p>I am a Ph.D. candidate in Engineering at Chung-Ang University, advised by Prof. Mucheol Kim. My doctoral research studies how trained graph neural networks can respond to deletion requests efficiently and transparently. The work connects natural-language request interpretation, localized model updating, privacy evaluation, and explanation-based verification.</p>
+        <p>My earlier training is in software engineering, including natural-language processing for requirements-derived test generation and more than four years of enterprise software development. This background informs my broader interest in AI systems that are dependable, maintainable, and responsive to user and regulatory requirements.</p>
+        <div class="status-row">
+          <span class="status">Ph.D. defense completed · June 2026</span>
+          <span class="status">Chung-Ang University · South Korea</span>
+          <span class="status">Open to postdoctoral and faculty opportunities</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="research">
+      <h2>Research Interests</h2>
+      <div class="grid-2">
+        <div class="card"><h3>Trustworthy Graph Machine Learning</h3><p>Reliable graph representation learning, robust evaluation, fairness, safety, and responsible use of relational models.</p></div>
+        <div class="card"><h3>Machine Unlearning and Privacy</h3><p>Efficient deletion, retrain fidelity, membership-inference evaluation, privacy-aware model maintenance, and regulatory requirements.</p></div>
+        <div class="card"><h3>Explainable and Auditable AI</h3><p>Attribution analysis, local structural explanations, human-readable verification, and evidence for model accountability.</p></div>
+        <div class="card"><h3>AI Software Engineering</h3><p>Requirements-aware AI, benchmark design, reproducible artifacts, model-update workflows, and dependable AI system evolution.</p></div>
+      </div>
+    </section>
+
+    <section id="news">
+      <h2>Recent News</h2>
+      <div class="news-item"><span class="date">June 2026</span>Successfully completed my Ph.D. dissertation defense.</div>
+      <div class="news-item"><span class="date">2026</span><em>From Random Forget-Sets to Realistic Natural-Language Deletion Requests</em> published at The ACM Web Conference (WWW).</div>
+      <div class="news-item"><span class="date">2026</span><em>Forget and Explain: Transparent Verification of GNN Unlearning</em> published at ACM WSDM.</div>
+      <div class="news-item"><span class="date">2025</span><em>GNN Unlearning Reality Checklist</em> presented at ICTC.</div>
+    </section>
+
+    <section id="publications">
+      <h2>Selected Publications</h2>
+      <div class="publication">
+        <div class="publication-title">Forget and Explain: Transparent Verification of GNN Unlearning <span class="venue">WSDM 2026</span></div>
+        <div class="publication-meta"><strong>Imran Ahsan</strong>, Hyunwook Yu, Jinsung Kim, and Mucheol Kim. Proceedings of the Nineteenth ACM International Conference on Web Search and Data Mining, pp. 1063–1067.</div>
+        <div class="paper-links"><a href="https://doi.org/10.1145/3773966.3779386" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+      <div class="publication">
+        <div class="publication-title">From Random Forget-Sets to Realistic Natural-Language Deletion Requests <span class="venue">WWW 2026</span></div>
+        <div class="publication-meta"><strong>Imran Ahsan</strong>, Jinsung Kim, and Mucheol Kim. Proceedings of The ACM Web Conference 2026, pp. 8741–8744.</div>
+        <div class="paper-links"><a href="https://doi.org/10.1145/3774904.3792954" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+      <div class="publication">
+        <div class="publication-title">GNN Unlearning Reality Checklist: A Standard for Robust, Reproducible, and Privacy-Safe Evaluation <span class="venue">ICTC 2025</span></div>
+        <div class="publication-meta"><strong>Imran Ahsan</strong>, Hyunwook Yu, and Mucheol Kim. 16th International Conference on Information and Communication Technology Convergence, pp. 874–876.</div>
+      </div>
+      <div class="publication">
+        <div class="publication-title">Unlocking the Power of Graph Neural Networks: A Systematic Literature Review of Application-Oriented GNN Studies <span class="venue">Accepted</span></div>
+        <div class="publication-meta"><strong>Imran Ahsan</strong>, Muhammad Waseem Anwar, JungYoon Kim, and Mucheol Kim. Computer Modeling in Engineering &amp; Sciences.</div>
+      </div>
+      <div class="publication">
+        <div class="publication-title">The Semantic Design Space of Retrieval-Augmented Recommender Systems: A Systematic Review of LLM-Based Approaches <span class="venue">Accepted</span></div>
+        <div class="publication-meta">Minhyeok Choi, <strong>Imran Ahsan</strong>, Hyunwook Yu, Taeyoung Choe, and Mucheol Kim. Computers, Materials &amp; Continua.</div>
+      </div>
+      <div class="notice">A complete and current publication list is available on my <a href="https://scholar.google.com/citations?user=h_P3dAkAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar profile</a>.</div>
+    </section>
+
+    <section id="projects">
+      <h2>Research Highlights</h2>
+      <div class="grid-2">
+        <div class="card"><h3>Text2Forget</h3><p>A request-driven benchmark that translates natural-language deletion requests into executable graph targets through lexical and semantic resolution.</p><div class="keyword-row"><span class="keyword">WWW 2026</span><span class="keyword">Requirements-aware AI</span><span class="keyword">Benchmark design</span></div></div>
+        <div class="card"><h3>NodeVanisher</h3><p>A localized graph-unlearning method based on deletion-aware subgraph extraction, capped neighbor sampling, and efficient refinement from a pretrained model.</p><div class="keyword-row"><span class="keyword">Graph unlearning</span><span class="keyword">Efficiency</span><span class="keyword">Scalability</span></div></div>
+        <div class="card"><h3>Forget and Explain</h3><p>An explainability-driven verification framework that compares pre- and post-unlearning evidence to diagnose residual direct and neighborhood influence.</p><div class="keyword-row"><span class="keyword">WSDM 2026</span><span class="keyword">XAI</span><span class="keyword">Auditability</span></div></div>
+        <div class="card"><h3>GNN Unlearning Reality Checklist</h3><p>A structured evaluation checklist for realistic threat models, reproducible experiments, privacy diagnostics, and robust graph-unlearning assessment.</p><div class="keyword-row"><span class="keyword">ICTC 2025</span><span class="keyword">Reproducibility</span><span class="keyword">Evaluation</span></div></div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Education and Experience</h2>
+      <div class="grid-2">
+        <div>
+          <div class="timeline-item"><div class="timeline-title">Ph.D. in Engineering</div><div class="timeline-meta">Chung-Ang University, South Korea · 2023–2026</div><div>Defense completed in June 2026; expected graduation August 2026. Advisor: Prof. Mucheol Kim.</div></div>
+          <div class="timeline-item"><div class="timeline-title">M.S. in Software Engineering</div><div class="timeline-meta">National University of Sciences and Technology, Pakistan · 2014–2017</div><div>Thesis: Automated Test Case Generation from User Specifications using NLP.</div></div>
+          <div class="timeline-item"><div class="timeline-title">B.S. in Software Engineering</div><div class="timeline-meta">International Islamic University Islamabad, Pakistan · 2009–2013</div></div>
+        </div>
+        <div>
+          <div class="timeline-item"><div class="timeline-title">Ph.D. Researcher</div><div class="timeline-meta">Data Intelligence Laboratory, Chung-Ang University · 2023–Present</div><div>Research on trustworthy graph learning, machine unlearning, explainability, privacy, and benchmark design.</div></div>
+          <div class="timeline-item"><div class="timeline-title">Lecturer in Computer Science</div><div class="timeline-meta">National University of Modern Languages, Pakistan · 2017–2023</div><div>Teaching, curriculum contribution, student mentoring, and final-year project supervision.</div></div>
+          <div class="timeline-item"><div class="timeline-title">Software Developer</div><div class="timeline-meta">Enterprise software development · 4+ years</div><div>Developed ASP.NET systems for admissions, student services, HR, university portals, and business workflows.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaching"><h2>Teaching</h2><p class="lead">My teaching experience includes programming fundamentals, object-oriented programming, Java, C#, software engineering, database-backed application development, and project supervision. I use practical assignments and iterative feedback to connect core concepts with complete software systems.</p></section>
+
+    <section id="methods"><h2>Methods and Tools</h2><div class="keyword-row"><span class="keyword">Python</span><span class="keyword">PyTorch</span><span class="keyword">PyTorch Geometric</span><span class="keyword">Graph Neural Networks</span><span class="keyword">Explainable AI</span><span class="keyword">Machine Unlearning</span><span class="keyword">NLP</span><span class="keyword">Benchmark Design</span><span class="keyword">Membership-Inference Evaluation</span><span class="keyword">C# / ASP.NET</span><span class="keyword">SQL</span><span class="keyword">Git</span><span class="keyword">LaTeX</span></div></section>
+
+    <section id="contact"><h2>Contact</h2><p>Email: <a href="mailto:Imranahsan23@gmail.com">Imranahsan23@gmail.com</a></p><p>Google Scholar: <a href="https://scholar.google.com/citations?user=h_P3dAkAAAAJ&amp;hl=en" target="_blank" rel="noopener">scholar.google.com/citations?user=h_P3dAkAAAAJ</a></p><p>GitHub: <a href="https://github.com/ImranAhsan23" target="_blank" rel="noopener">github.com/ImranAhsan23</a></p><p>LinkedIn: <a href="https://www.linkedin.com/in/imran-ahsan-7042365a/" target="_blank" rel="noopener">linkedin.com/in/imran-ahsan-7042365a</a></p></section>
+  </main>
+
+  <footer><div class="shell">© 2026 Imran Ahsan · Last updated June 2026</div></footer>
+</body>
+</html>
